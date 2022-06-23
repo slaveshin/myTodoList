@@ -1,9 +1,4 @@
-//
-//  ViewController.swift
-//  myTodoList
-//
 //  Created by 신승재 on 2022/06/22.
-//
 
 import UIKit
 
@@ -11,23 +6,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    @IBOutlet weak var tableView: UITableView!
+    /*
     let tableView: UITableView = {
         let table = UITableView()
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return table
-    } ()
+    } ()*/
     
     private var models = [ToDoListItem]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
         title = "Todo List"
-        view.addSubview(tableView)
+        // view.addSubview(tableView)
         getAllItems()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.frame = view.bounds
+        // tableView.frame = view.bounds
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(didTapAdd))
     }
@@ -49,14 +46,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     // tableView
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return models.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = models[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = model.name
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
+        let date = model.createdAt ?? Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yy-MM-dd"
+        let convertDate = dateFormatter.string(from: date)
+        
+        cell.name.text = model.name
+        
+        cell.createAt.text = "Create At \(convertDate)"
+        
         return cell
     }
     

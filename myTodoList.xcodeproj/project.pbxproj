@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C3ADDE728649E1600690FF5 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3ADDE628649E1600690FF5 /* CustomTableViewCell.swift */; };
 		2CA7E8B82862E51500C7B622 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA7E8B72862E51500C7B622 /* AppDelegate.swift */; };
 		2CA7E8BA2862E51500C7B622 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA7E8B92862E51500C7B622 /* SceneDelegate.swift */; };
 		2CA7E8BC2862E51500C7B622 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA7E8BB2862E51500C7B622 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C3ADDE628649E1600690FF5 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		2CA7E8B42862E51500C7B622 /* myTodoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myTodoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CA7E8B72862E51500C7B622 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CA7E8B92862E51500C7B622 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 			children = (
 				2CA7E8D22862E6BD00C7B622 /* ToDoListItem */,
 				2CA7E8B72862E51500C7B622 /* AppDelegate.swift */,
+				2C3ADDE628649E1600690FF5 /* CustomTableViewCell.swift */,
 				2CA7E8B92862E51500C7B622 /* SceneDelegate.swift */,
 				2CA7E8BB2862E51500C7B622 /* ViewController.swift */,
 				2CA7E8BD2862E51500C7B622 /* Main.storyboard */,
@@ -158,6 +161,7 @@
 				2CA7E8BC2862E51500C7B622 /* ViewController.swift in Sources */,
 				2CA7E8B82862E51500C7B622 /* AppDelegate.swift in Sources */,
 				2CA7E8BA2862E51500C7B622 /* SceneDelegate.swift in Sources */,
+				2C3ADDE728649E1600690FF5 /* CustomTableViewCell.swift in Sources */,
 				2CA7E8D02862E6A200C7B622 /* ToDoListItem+CoreDataClass.swift in Sources */,
 				2CA7E8D12862E6A200C7B622 /* ToDoListItem+CoreDataProperties.swift in Sources */,
 				2CA7E8C22862E51500C7B622 /* myTodoList.xcdatamodeld in Sources */,
