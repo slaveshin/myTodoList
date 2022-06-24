@@ -62,7 +62,13 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="IPd-Dq-p9d"/>
+                    <navigationItem key="navigationItem" id="IPd-Dq-p9d">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="z1A-HW-tnr">
+                            <connections>
+                                <action selector="pushAddButton:" destination="BYZ-38-t0r" id="Yqv-5b-aBY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Lbi-9O-kp4" id="2T6-am-Amr"/>
                     </connections>
@@ -89,6 +95,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
