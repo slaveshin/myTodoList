@@ -55,6 +55,34 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let sheet = UIAlertController(title: "Edit", message: nil, preferredStyle: .actionSheet)
+        let item = models[indexPath.row]
+        
+        sheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        sheet.addAction(UIAlertAction(title: "Edit", style: .default, handler: { [weak self] _ in
+            
+            let alert = UIAlertController(title: "Edit Item", message: "Edit your item", preferredStyle: .alert)
+            
+            alert.addTextField(configurationHandler: nil)
+            alert.textFields?.first?.text = item.name
+            alert.addAction(UIAlertAction(title: "Submit", style: .cancel, handler: { [weak self] _ in
+                guard let field = alert.textFields?.first, let newName = field.text, !newName.isEmpty else {
+                    return
+                }
+                
+                self?.updateItem(item: item, index: indexPath.row ,newName: newName)
+                
+            }))
+            self?.present(alert, animated: true)
+        }))
+        sheet.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
+            self?.deleteItem(index: indexPath.row)
+        }))
+        present(sheet, animated: true)
+    }
+    
     
     // realtime database
     func getAllItems() {
@@ -88,15 +116,36 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         
         // update database
-        let key = self.models.count
-        let newItem = ["createAt":convertDate, "name":newName]
-        let childUpdates = ["/TodoList/\(key)": newItem]
-        ref.updateChildValues(childUpdates)
+        let newItem = Todos(createAt: convertDate, name: newName)
+        self.models.append(newItem)
+        self.ref.child("TodoList").setValue(convertToArray(todos:models))
+        
         getAllItems()
+    }
+    
+    func deleteItem(index: Int) {
+        self.models.remove(at: index)
+        self.ref.child("TodoList").setValue(convertToArray(todos:models))
+        getAllItems()
+        }
 
+    func updateItem(item:Todos, index: Int, newName: String) {
+        let editItem = Todos(createAt: item.createAt, name: newName)
+        self.models[index] = editItem
+        self.ref.child("TodoList").setValue(convertToArray(todos:models))
+        getAllItems()
     }
         
-       
+    func convertToArray(todos: [Todos]) -> Array<Any> {
+        var newItemArray:Array = [Dictionary<String, Any>]()
+        
+        for index in 0..<todos.count{
+            let content = todos[index].name
+            let date = todos[index].createAt
+            newItemArray.append(["createAt":date, "name":content])
+        }
+        return newItemArray
+    }
     
     // JSON Data Parsing
     struct Todos: Codable {
